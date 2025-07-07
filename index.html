@@ -20,7 +20,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            overflow: hidden;
+            /* 移除 overflow: hidden 以允许页面滚动 */
         }
         
         .container {
@@ -32,10 +32,7 @@
         header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(25, 25, 35, 0.5);
-            border-radius: 15px;
-            width: 100%;
+            padding: 0 15px;
         }
         
         h1 {
@@ -58,6 +55,7 @@
             flex-wrap: wrap;
             gap: 30px;
             justify-content: center;
+            margin-bottom: 30px;
         }
         
         .grid-section {
@@ -81,6 +79,8 @@
             padding: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto; /* 添加滚动 */
+            max-height: 80vh; /* 限制高度 */
         }
         
         .section-title {
@@ -109,12 +109,6 @@
             position: relative;
             transition: all 0.3s ease;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-        }
-        
-        .grid-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
         
         .grid-item::before {
@@ -137,10 +131,10 @@
         
         .center-container {
             display: flex;
-            flex-direction: row;
+            flex-direction: row; /* 修改为水平排列 */
             justify-content: space-around;
             align-items: center;
-            gap: 10px;
+            gap: 10px; /* 水平间距 */
             width: 100%;
             height: 100%;
         }
@@ -286,14 +280,15 @@
             height: 24px;
             color: #0f9;
             font-weight: 500;
-            min-height: 2em;
         }
         
         footer {
-            margin-top: 40px;
+            margin-top: auto; /* 确保页脚在底部 */
+            padding: 20px;
             text-align: center;
             color: #777;
             font-size: 0.9rem;
+            width: 100%;
         }
         
         .display-container {
@@ -309,6 +304,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            overflow-y: auto; /* 允许滚动 */
         }
         
         .display-grid-container {
@@ -317,6 +313,7 @@
             height: 80vmin;
             max-width: 500px;
             max-height: 500px;
+            margin: 20px 0;
         }
         
         .display-grid {
@@ -349,10 +346,10 @@
         
         .display-center-container {
             display: flex;
-            flex-direction: row;
+            flex-direction: row; /* 修改为水平排列 */
             justify-content: space-around;
             align-items: center;
-            gap: 1.5vmin;
+            gap: 1.5vmin; /* 水平间距 */
             width: 100%;
             height: 100%;
         }
@@ -404,29 +401,28 @@
             margin-bottom: 15px;
         }
         
-        .path-preview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-            min-height: 30px;
-        }
-        
-        .path-step {
-            background: rgba(40, 40, 60, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #0f9;
             font-size: 0.9rem;
+            animation: bounce 2s infinite;
+            display: none;
+            z-index: 50;
         }
         
-        .loop-counter {
-            background: rgba(40, 40, 60, 0.8);
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 1rem;
-            margin-top: 10px;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
         }
         
+        /* 移动设备优化 */
         @media (max-width: 768px) {
             .content {
                 flex-direction: column;
@@ -439,13 +435,42 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .grid-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .scroll-indicator {
+                display: block;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .grid-section {
+                max-height: 400px;
+            }
+            
+            .controls-section {
+                max-height: 60vh;
+            }
+            
+            .scroll-indicator {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator">向下滚动查看更多内容</div>
+    
     <div class="container setup-container">
         <header>
-            <h1>✨ 增强版闪烁红光程序 ✨</h1>
+            <h1>增强版闪烁红光程序</h1>
             <p class="description">创建自定义闪烁路径：在3x3网格中定义点的闪烁顺序（1-9对应8个位置，中间两个点用于间歇闪烁）。新增循环计数和随机模式功能。</p>
         </header>
         
@@ -490,7 +515,6 @@
                     </div>
                 </div>
                 <div class="status" id="status">准备就绪</div>
-                <div class="loop-counter" id="loopCounter">当前循环: 0/0</div>
             </div>
             
             <div class="controls-section">
@@ -499,9 +523,6 @@
                 <div class="control-group">
                     <label for="pathInput">闪烁路径（例如: 1,2,1,7）</label>
                     <input type="text" id="pathInput" value="1,2,3,6,9,8,7,4" placeholder="输入闪烁路径，如: 1,2,3,4">
-                    <div class="path-preview" id="pathPreview">
-                        <div class="path-step">路径预览:</div>
-                    </div>
                 </div>
                 
                 <div class="control-group">
@@ -544,7 +565,7 @@
         </div>
         
         <footer>
-            <p>增强版闪烁红光程序 | 新增循环计数和随机模式功能 | 优化交互体验</p>
+            <p>增强版闪烁红光程序 | 新增循环计数和随机模式功能 | 支持页面滚动</p>
         </footer>
     </div>
     
@@ -618,8 +639,7 @@
             const displayContainer = document.getElementById('displayContainer');
             const displayStatus = document.getElementById('displayStatus');
             const centerAlert = document.getElementById('centerAlert');
-            const pathPreview = document.getElementById('pathPreview');
-            const loopCounter = document.getElementById('loopCounter');
+            const scrollIndicator = document.getElementById('scrollIndicator');
             
             // 获取所有点元素
             const dots = {};
@@ -649,30 +669,14 @@
             // 有效位置（排除中心点5）
             const validPositions = [1, 2, 3, 4, 6, 7, 8, 9];
             
-            // 更新路径预览
-            function updatePathPreview() {
-                const path = pathInput.value.split(',').map(num => num.trim());
-                pathPreview.innerHTML = '<div class="path-step">路径预览:</div>';
-                
-                path.forEach((step, index) => {
-                    const stepEl = document.createElement('div');
-                    stepEl.className = 'path-step';
-                    stepEl.textContent = step;
-                    stepEl.title = `步骤 ${index + 1}`;
-                    
-                    // 高亮当前步骤（如果有的话）
-                    if (index === currentIndex && isRunning) {
-                        stepEl.style.background = '#e94560';
-                        stepEl.style.color = 'white';
-                    }
-                    
-                    pathPreview.appendChild(stepEl);
-                });
-            }
-            
-            // 更新循环计数器
-            function updateLoopCounter() {
-                loopCounter.textContent = `当前循环: ${currentLoop}/${loopCount || '∞'}`;
+            // 检查是否需要显示滚动提示
+            function checkScrollNeeded() {
+                const container = document.querySelector('.container');
+                if (container.scrollHeight > window.innerHeight) {
+                    scrollIndicator.style.display = 'block';
+                } else {
+                    scrollIndicator.style.display = 'none';
+                }
             }
             
             // 激活点
@@ -817,9 +821,6 @@
                 currentLoop = 0;
                 completedLoop = false;
                 
-                updatePathPreview();
-                updateLoopCounter();
-                
                 // 开始动画循环
                 animate();
             }
@@ -868,7 +869,6 @@
                             
                             // 增加循环计数
                             currentLoop++;
-                            updateLoopCounter();
                             
                             // 短暂延迟后进入下一个点
                             setTimeout(() => {
@@ -884,9 +884,6 @@
                         activateDot(dotId);
                         status.textContent = `闪烁: 位置 ${dotId} (循环 ${currentLoop + 1}/${loopCount || '∞'})`;
                         displayStatus.textContent = `闪烁: 位置 ${dotId} (循环 ${currentLoop + 1}/${loopCount || '∞'})`;
-                        
-                        // 更新路径预览
-                        updatePathPreview();
                         
                         // 设置定时器关闭当前点并进入中心点闪烁
                         setTimeout(() => {
@@ -908,11 +905,7 @@
                                 if (currentIndex >= currentPath.length) {
                                     currentIndex = 0;
                                     currentLoop++;
-                                    updateLoopCounter();
                                 }
-                                
-                                // 更新路径预览
-                                updatePathPreview();
                                 
                                 // 短暂延迟后进入下一个点
                                 setTimeout(() => {
@@ -934,7 +927,6 @@
                 startBtn.disabled = false;
                 randomModeCheckbox.disabled = false;
                 centerAlert.style.display = 'none';
-                updatePathPreview();
             }
             
             // 返回设置界面
@@ -942,6 +934,7 @@
                 stopAnimation();
                 displayContainer.style.display = 'none';
                 document.querySelector('.setup-container').style.display = 'block';
+                checkScrollNeeded();
             }
             
             // 事件监听
@@ -952,18 +945,17 @@
             
             // 初始化
             resetAllDots();
-            updatePathPreview();
-            updateLoopCounter();
             
-            // 添加网格点点击事件
-            for (let i = 1; i <= 9; i++) {
-                if (i !== 5) {
-                    document.querySelector(`.grid-item[data-index="${i}"]`).addEventListener('click', () => {
-                        pathInput.value += pathInput.value ? `,${i}` : i;
-                        updatePathPreview();
-                    });
+            // 检查是否需要滚动提示
+            window.addEventListener('resize', checkScrollNeeded);
+            window.addEventListener('load', checkScrollNeeded);
+            
+            // 隐藏滚动提示当用户滚动时
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    scrollIndicator.style.display = 'none';
                 }
-            }
+            });
         });
     </script>
 </body>
