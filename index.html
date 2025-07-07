@@ -3,406 +3,967 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欢迎来到我们的网站</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>增强版闪烁红光程序</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: #fff;
-            line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* 导航栏样式 */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 40px;
-            animation: fadeInDown 1s ease;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: #FFD700;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 18px;
-            transition: color 0.3s;
-            position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: #FFD700;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #FFD700;
-            transition: width 0.3s;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* 主内容区域样式 */
-        .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
             text-align: center;
-            padding: 60px 20px;
-            margin: 40px 0;
-            animation: fadeInUp 1s ease;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(25, 25, 35, 0.5);
+            border-radius: 15px;
+            width: 100%;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
+        h1 {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            color: #e94560;
+            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
         }
         
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin-bottom: 40px;
-            opacity: 0.9;
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            color: #c0c0c0;
         }
         
-        .highlight {
-            color: #FFD700;
-            font-weight: 700;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(to right, #FFD700, #FFA500);
-            color: #333;
-            text-decoration: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 20px 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .cta-button.secondary {
-            background: transparent;
-            border: 2px solid #FFD700;
-            color: #FFD700;
-        }
-        
-        /* 功能卡片区域 */
-        .features {
+        .content {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
-            margin: 80px 0;
+            justify-content: center;
         }
         
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            width: 300px;
-            text-align: center;
-            transition: transform 0.4s;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        .grid-section {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(25, 25, 35, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .controls-section {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(25, 25, 35, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .feature-card:hover {
-            transform: translateY(-15px);
-        }
-        
-        .feature-card i {
-            font-size: 50px;
-            color: #FFD700;
+        .section-title {
+            font-size: 1.5rem;
             margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        /* 页脚样式 */
-        footer {
+            color: #0f9;
             text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .social-icons {
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        
+        .grid-item {
+            background: rgba(40, 40, 60, 0.8);
+            border-radius: 10px;
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            margin: 0 10px;
-            color: #FFD700;
-            font-size: 20px;
-            transition: transform 0.3s, background 0.3s;
-        }
-        
-        .social-icons a:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 215, 0, 0.2);
-        }
-        
-        /* 动画效果 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animated {
-            animation: fadeInUp 1s ease;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .features {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-button {
-                display: block;
-                margin: 15px auto;
-                width: 80%;
-            }
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: white;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
             cursor: pointer;
         }
         
+        .grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .grid-item::before {
+            content: attr(data-index);
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #333;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .center-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .center-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #333;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .active {
+            background: #e94560 !important;
+            box-shadow: 0 0 20px #e94560, inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .center-active {
+            background: #0f9 !important;
+            box-shadow: 0 0 20px #0f9, inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #0f9;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 30, 50, 0.7);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #0f9;
+            box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-group label {
+            margin-bottom: 0;
+            color: #ffcc00;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #startBtn {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+        }
+        
+        #startBtn:hover {
+            background: linear-gradient(135deg, #00cec9, #00b894);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 206, 201, 0.4);
+        }
+        
+        #stopBtn {
+            background: linear-gradient(135deg, #e17055, #e94560);
+            color: white;
+        }
+        
+        #stopBtn:hover {
+            background: linear-gradient(135deg, #e94560, #e17055);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+        }
+        
+        #backBtn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+        }
+        
+        #backBtn:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+        }
+        
+        #confirmBtn {
+            background: linear-gradient(135deg, #ff9900, #ffcc00);
+            color: white;
+        }
+        
+        #confirmBtn:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff9900);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+        }
+        
+        .example {
+            background: rgba(30, 30, 50, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .example h3 {
+            color: #0f9;
+            margin-bottom: 10px;
+        }
+        
+        .example p {
+            line-height: 1.5;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            height: 24px;
+            color: #0f9;
+            font-weight: 500;
+            min-height: 2em;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .display-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.95);
+            z-index: 100;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .display-grid-container {
+            position: relative;
+            width: 80vmin;
+            height: 80vmin;
+            max-width: 500px;
+            max-height: 500px;
+        }
+        
+        .display-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 3vmin;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .display-item {
+            background: rgba(40, 40, 60, 0.8);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .display-dot {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            background: #333;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .display-center-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1.5vmin;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .display-center-dot {
+            width: 40%;
+            height: 40%;
+            border-radius: 50%;
+            background: #333;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .display-status {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #0f9;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .display-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .center-alert {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 200;
+            border: 2px solid #ffcc00;
+            display: none;
+        }
+        
+        .center-alert h3 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+        
+        .path-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            min-height: 30px;
+        }
+        
+        .path-step {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .loop-counter {
+            background: rgba(40, 40, 60, 0.8);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+            .content {
+                flex-direction: column;
+            }
+            
+            .grid-section, .controls-section {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 导航栏 -->
-        <nav>
-            <div class="logo">
-                <i class="fas fa-rocket"></i>
-                <span>创新科技</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">产品</a></li>
-                <li><a href="#">服务</a></li>
-                <li><a href="#">关于我们</a></li>
-                <li><a href="#">联系我们</a></li>
-            </ul>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
+    <div class="container setup-container">
+        <header>
+            <h1>✨ 增强版闪烁红光程序 ✨</h1>
+            <p class="description">创建自定义闪烁路径：在3x3网格中定义点的闪烁顺序（1-9对应8个位置，中间两个点用于间歇闪烁）。新增循环计数和随机模式功能。</p>
+        </header>
         
-        <!-- 主内容区 -->
-        <div class="hero">
-            <h1>欢迎来到<span class="highlight">创新科技</span>平台</h1>
-            <p>我们致力于提供最前沿的技术解决方案，帮助企业实现数字化转型，提升业务效率与市场竞争力</p>
-            <div class="cta-buttons">
-                <a href="#" class="cta-button">立即开始</a>
-                <a href="#" class="cta-button secondary">了解更多</a>
+        <div class="content">
+            <div class="grid-section">
+                <h2 class="section-title">闪烁网格</h2>
+                <div class="grid-container">
+                    <!-- 第一行 -->
+                    <div class="grid-item" data-index="1">
+                        <div class="dot" id="dot-1"></div>
+                    </div>
+                    <div class="grid-item" data-index="2">
+                        <div class="dot" id="dot-2"></div>
+                    </div>
+                    <div class="grid-item" data-index="3">
+                        <div class="dot" id="dot-3"></div>
+                    </div>
+                    
+                    <!-- 第二行 -->
+                    <div class="grid-item" data-index="4">
+                        <div class="dot" id="dot-4"></div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="center-container">
+                            <div class="center-dot" id="center-dot-1"></div>
+                            <div class="center-dot" id="center-dot-2"></div>
+                        </div>
+                    </div>
+                    <div class="grid-item" data-index="6">
+                        <div class="dot" id="dot-6"></div>
+                    </div>
+                    
+                    <!-- 第三行 -->
+                    <div class="grid-item" data-index="7">
+                        <div class="dot" id="dot-7"></div>
+                    </div>
+                    <div class="grid-item" data-index="8">
+                        <div class="dot" id="dot-8"></div>
+                    </div>
+                    <div class="grid-item" data-index="9">
+                        <div class="dot" id="dot-9"></div>
+                    </div>
+                </div>
+                <div class="status" id="status">准备就绪</div>
+                <div class="loop-counter" id="loopCounter">当前循环: 0/0</div>
+            </div>
+            
+            <div class="controls-section">
+                <h2 class="section-title">控制面板</h2>
+                
+                <div class="control-group">
+                    <label for="pathInput">闪烁路径（例如: 1,2,1,7）</label>
+                    <input type="text" id="pathInput" value="1,2,3,6,9,8,7,4" placeholder="输入闪烁路径，如: 1,2,3,4">
+                    <div class="path-preview" id="pathPreview">
+                        <div class="path-step">路径预览:</div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label for="intervalInput">间歇时间（毫秒）</label>
+                    <input type="number" id="intervalInput" value="500" min="50" max="5000">
+                </div>
+                
+                <div class="control-group">
+                    <label for="durationInput">每个点闪烁时间（毫秒）</label>
+                    <input type="number" id="durationInput" value="1000" min="100" max="5000">
+                </div>
+                
+                <div class="control-group">
+                    <label for="loopCount">循环次数（0=无限）</label>
+                    <input type="number" id="loopCount" value="0" min="0" max="100">
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="randomMode">
+                    <label for="randomMode">随机闪烁模式</label>
+                </div>
+                
+                <div class="buttons">
+                    <button id="startBtn">开始展示</button>
+                    <button id="stopBtn">停止演示</button>
+                </div>
+                
+                <div class="example">
+                    <h3>使用说明</h3>
+                    <p>1. 网格位置编号：1(左上), 2(上中), 3(右上), 4(左中), 6(右中), 7(左下), 8(下中), 9(右下)</p>
+                    <p>2. 在路径输入框中输入数字序列（1-9，中间位置5除外）</p>
+                    <p>3. 设置间歇时间（中心两点交替闪烁时长）</p>
+                    <p>4. 设置每个点的闪烁持续时间</p>
+                    <p>5. 设置循环次数（0表示无限循环）</p>
+                    <p>6. 启用随机模式将随机选择闪烁位置</p>
+                    <p>7. 点击"开始展示"按钮进入全屏演示</p>
+                    <p>示例：输入"1,2,1,7"表示：左上角 → 上中 → 左上角 → 左下角</p>
+                </div>
             </div>
         </div>
         
-        <!-- 功能卡片 -->
-        <div class="features">
-            <div class="feature-card animated">
-                <i class="fas fa-lightbulb"></i>
-                <h3>创新解决方案</h3>
-                <p>我们提供定制化的创新解决方案，满足您的独特业务需求</p>
-            </div>
-            
-            <div class="feature-card animated delay-1">
-                <i class="fas fa-cogs"></i>
-                <h3>专业技术支持</h3>
-                <p>24/7专业技术支持团队随时为您解决技术难题</p>
-            </div>
-            
-            <div class="feature-card animated delay-2">
-                <i class="fas fa-chart-line"></i>
-                <h3>数据驱动决策</h3>
-                <p>通过数据分析帮助您做出更明智的商业决策</p>
-            </div>
-            
-            <div class="feature-card animated delay-3">
-                <i class="fas fa-shield-alt"></i>
-                <h3>安全保障</h3>
-                <p>企业级安全保障，确保您的数据和业务安全无忧</p>
-            </div>
-        </div>
-        
-        <!-- 页脚 -->
         <footer>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <p>© 2023 创新科技有限公司. 保留所有权利</p>
-            <p>电话: (123) 456-7890 | 邮箱: contact@innotech.com</p>
+            <p>增强版闪烁红光程序 | 新增循环计数和随机模式功能 | 优化交互体验</p>
         </footer>
+    </div>
+    
+    <div class="display-container" id="displayContainer">
+        <div class="display-grid-container">
+            <div class="display-grid">
+                <!-- 第一行 -->
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-1"></div>
+                </div>
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-2"></div>
+                </div>
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-3"></div>
+                </div>
+                
+                <!-- 第二行 -->
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-4"></div>
+                </div>
+                <div class="display-item">
+                    <div class="display-center-container">
+                        <div class="display-center-dot" id="display-center-dot-1"></div>
+                        <div class="display-center-dot" id="display-center-dot-2"></div>
+                    </div>
+                </div>
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-6"></div>
+                </div>
+                
+                <!-- 第三行 -->
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-7"></div>
+                </div>
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-8"></div>
+                </div>
+                <div class="display-item">
+                    <div class="display-dot" id="display-dot-9"></div>
+                </div>
+            </div>
+            <div class="display-status" id="displayStatus">演示中: 位置 1</div>
+            
+            <!-- 循环结束提示 -->
+            <div class="center-alert" id="centerAlert">
+                <h3>循环已完成!</h3>
+                <p>中心点将持续闪烁</p>
+                <button id="confirmBtn">确认</button>
+            </div>
+        </div>
+        
+        <div class="display-controls">
+            <button id="backBtn">返回设置</button>
+        </div>
     </div>
 
     <script>
-        // 简单的滚动动画效果
         document.addEventListener('DOMContentLoaded', function() {
-            // 移动端菜单切换
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
+            // 获取DOM元素
+            const pathInput = document.getElementById('pathInput');
+            const intervalInput = document.getElementById('intervalInput');
+            const durationInput = document.getElementById('durationInput');
+            const loopCountInput = document.getElementById('loopCount');
+            const randomModeCheckbox = document.getElementById('randomMode');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const backBtn = document.getElementById('backBtn');
+            const confirmBtn = document.getElementById('confirmBtn');
+            const status = document.getElementById('status');
+            const displayContainer = document.getElementById('displayContainer');
+            const displayStatus = document.getElementById('displayStatus');
+            const centerAlert = document.getElementById('centerAlert');
+            const pathPreview = document.getElementById('pathPreview');
+            const loopCounter = document.getElementById('loopCounter');
             
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-                });
+            // 获取所有点元素
+            const dots = {};
+            const displayDots = {};
+            for (let i = 1; i <= 9; i++) {
+                dots[i] = document.getElementById(`dot-${i}`);
+                displayDots[i] = document.getElementById(`display-dot-${i}`);
             }
+            const centerDot1 = document.getElementById('center-dot-1');
+            const centerDot2 = document.getElementById('center-dot-2');
+            const displayCenterDot1 = document.getElementById('display-center-dot-1');
+            const displayCenterDot2 = document.getElementById('display-center-dot-2');
             
-            // 滚动动画效果
-            const animatedElements = document.querySelectorAll('.animated');
+            let animationTimeout;
+            let centerBlinkInterval;
+            let isRunning = false;
+            let currentPath = [];
+            let currentIndex = 0;
+            let intervalTime = 500;
+            let durationTime = 1000;
+            let centerActive = 1; // 当前激活的中心点
+            let loopCount = 0;
+            let currentLoop = 0;
+            let randomMode = false;
+            let completedLoop = false;
+
+            // 有效位置（排除中心点5）
+            const validPositions = [1, 2, 3, 4, 6, 7, 8, 9];
             
-            function checkScroll() {
-                animatedElements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.3;
+            // 更新路径预览
+            function updatePathPreview() {
+                const path = pathInput.value.split(',').map(num => num.trim());
+                pathPreview.innerHTML = '<div class="path-step">路径预览:</div>';
+                
+                path.forEach((step, index) => {
+                    const stepEl = document.createElement('div');
+                    stepEl.className = 'path-step';
+                    stepEl.textContent = step;
+                    stepEl.title = `步骤 ${index + 1}`;
                     
-                    if (elementPosition < screenPosition) {
-                        element.style.opacity = 1;
-                        element.style.transform = 'translateY(0)';
+                    // 高亮当前步骤（如果有的话）
+                    if (index === currentIndex && isRunning) {
+                        stepEl.style.background = '#e94560';
+                        stepEl.style.color = 'white';
                     }
+                    
+                    pathPreview.appendChild(stepEl);
                 });
             }
             
-            // 初始化检查
-            checkScroll();
+            // 更新循环计数器
+            function updateLoopCounter() {
+                loopCounter.textContent = `当前循环: ${currentLoop}/${loopCount || '∞'}`;
+            }
             
-            // 滚动时检查
-            window.addEventListener('scroll', checkScroll);
+            // 激活点
+            function activateDot(dotId) {
+                if (dots[dotId]) {
+                    dots[dotId].classList.add('active');
+                }
+                if (displayDots[dotId]) {
+                    displayDots[dotId].classList.add('active');
+                }
+            }
+            
+            // 关闭点
+            function deactivateDot(dotId) {
+                if (dots[dotId]) {
+                    dots[dotId].classList.remove('active');
+                }
+                if (displayDots[dotId]) {
+                    displayDots[dotId].classList.remove('active');
+                }
+            }
+            
+            // 激活中心点
+            function activateCenterDot(dot, isDisplay = false) {
+                if (isDisplay) {
+                    dot.classList.add('center-active');
+                } else {
+                    dot.classList.add('active');
+                }
+            }
+            
+            // 关闭中心点
+            function deactivateCenterDot(dot, isDisplay = false) {
+                if (isDisplay) {
+                    dot.classList.remove('center-active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            }
+            
+            // 重置所有点
+            function resetAllDots() {
+                for (let i = 1; i <= 9; i++) {
+                    deactivateDot(i);
+                }
+                deactivateCenterDot(centerDot1);
+                deactivateCenterDot(centerDot2);
+                deactivateCenterDot(displayCenterDot1, true);
+                deactivateCenterDot(displayCenterDot2, true);
+            }
+            
+            // 开始中心点交替闪烁
+            function startCenterBlink() {
+                // 清除之前的闪烁
+                clearInterval(centerBlinkInterval);
+                
+                // 初始状态：第一个中心点亮，第二个灭
+                deactivateCenterDot(centerDot1);
+                deactivateCenterDot(centerDot2);
+                deactivateCenterDot(displayCenterDot1, true);
+                deactivateCenterDot(displayCenterDot2, true);
+                
+                // 设置闪烁间隔
+                centerBlinkInterval = setInterval(() => {
+                    if (centerActive === 1) {
+                        // 激活第一个中心点
+                        activateCenterDot(centerDot1);
+                        activateCenterDot(displayCenterDot1, true);
+                        
+                        // 关闭第二个中心点
+                        deactivateCenterDot(centerDot2);
+                        deactivateCenterDot(displayCenterDot2, true);
+                        
+                        centerActive = 2;
+                    } else {
+                        // 激活第二个中心点
+                        activateCenterDot(centerDot2);
+                        activateCenterDot(displayCenterDot2, true);
+                        
+                        // 关闭第一个中心点
+                        deactivateCenterDot(centerDot1);
+                        deactivateCenterDot(displayCenterDot1, true);
+                        
+                        centerActive = 1;
+                    }
+                }, 100); // 中心点交替速度固定为100ms
+            }
+            
+            // 停止中心点交替闪烁
+            function stopCenterBlink() {
+                clearInterval(centerBlinkInterval);
+                deactivateCenterDot(centerDot1);
+                deactivateCenterDot(centerDot2);
+                deactivateCenterDot(displayCenterDot1, true);
+                deactivateCenterDot(displayCenterDot2, true);
+            }
+            
+            // 开始动画
+            function startAnimation() {
+                if (isRunning) return;
+                
+                // 获取用户输入
+                const path = pathInput.value.split(',').map(num => num.trim());
+                intervalTime = parseInt(intervalInput.value);
+                durationTime = parseInt(durationInput.value);
+                loopCount = parseInt(loopCountInput.value);
+                randomMode = randomModeCheckbox.checked;
+                
+                // 验证输入
+                if (!randomMode && (path.length === 0 || path.some(num => !/^[1-9]$/.test(num) || num === '5'))) {
+                    status.textContent = "错误：路径包含无效数字（只允许1-9，且不能包含5）";
+                    return;
+                }
+                
+                if (isNaN(intervalTime) || intervalTime < 50 || intervalTime > 5000) {
+                    status.textContent = "错误：间歇时间必须在50-5000毫秒之间";
+                    return;
+                }
+                
+                if (isNaN(durationTime) || durationTime < 100 || durationTime > 5000) {
+                    status.textContent = "错误：闪烁时间必须在100-5000毫秒之间";
+                    return;
+                }
+                
+                if (isNaN(loopCount) || loopCount < 0 || loopCount > 100) {
+                    status.textContent = "错误：循环次数必须在0-100之间";
+                    return;
+                }
+                
+                // 进入展示模式
+                document.querySelector('.setup-container').style.display = 'none';
+                displayContainer.style.display = 'flex';
+                centerAlert.style.display = 'none';
+                
+                isRunning = true;
+                status.textContent = "运行中...";
+                startBtn.disabled = true;
+                randomModeCheckbox.disabled = true;
+                
+                currentPath = path;
+                currentIndex = 0;
+                currentLoop = 0;
+                completedLoop = false;
+                
+                updatePathPreview();
+                updateLoopCounter();
+                
+                // 开始动画循环
+                animate();
+            }
+            
+            // 动画循环
+            function animate() {
+                if (!isRunning) return;
+                
+                resetAllDots();
+                
+                // 检查是否已完成所有循环
+                if (loopCount > 0 && currentLoop >= loopCount) {
+                    completedLoop = true;
+                    centerAlert.style.display = 'block';
+                    displayStatus.textContent = `已完成 ${loopCount} 次循环`;
+                    status.textContent = `已完成 ${loopCount} 次循环`;
+                    
+                    // 开始中心点交替闪烁
+                    startCenterBlink();
+                    return;
+                }
+                
+                if (randomMode) {
+                    // 随机模式：随机选择一个有效位置
+                    const randomIndex = Math.floor(Math.random() * validPositions.length);
+                    const dotId = validPositions[randomIndex];
+                    
+                    activateDot(dotId);
+                    status.textContent = `随机闪烁: 位置 ${dotId} (循环 ${currentLoop + 1}/${loopCount || '∞'})`;
+                    displayStatus.textContent = `随机闪烁: 位置 ${dotId} (循环 ${currentLoop + 1}/${loopCount || '∞'})`;
+                    
+                    // 设置定时器关闭当前点并进入中心点闪烁
+                    setTimeout(() => {
+                        deactivateDot(dotId);
+                        
+                        // 开始中心点交替闪烁
+                        startCenterBlink();
+                        
+                        // 设置状态
+                        status.textContent = `中心点交替闪烁 (${intervalTime}毫秒)`;
+                        displayStatus.textContent = `中心点交替闪烁 (${intervalTime}毫秒)`;
+                        
+                        // 设置定时器停止中心点闪烁并进入下一个点
+                        setTimeout(() => {
+                            stopCenterBlink();
+                            
+                            // 增加循环计数
+                            currentLoop++;
+                            updateLoopCounter();
+                            
+                            // 短暂延迟后进入下一个点
+                            setTimeout(() => {
+                                if (isRunning) animate();
+                            }, 100);
+                        }, intervalTime);
+                    }, durationTime);
+                } else {
+                    // 顺序模式
+                    if (currentIndex < currentPath.length) {
+                        // 闪烁路径中的点
+                        const dotId = currentPath[currentIndex];
+                        activateDot(dotId);
+                        status.textContent = `闪烁: 位置 ${dotId} (循环 ${currentLoop + 1}/${loopCount || '∞'})`;
+                        displayStatus.textContent = `闪烁: 位置 ${dotId} (循环 ${currentLoop + 1}/${loopCount || '∞'})`;
+                        
+                        // 更新路径预览
+                        updatePathPreview();
+                        
+                        // 设置定时器关闭当前点并进入中心点闪烁
+                        setTimeout(() => {
+                            deactivateDot(dotId);
+                            
+                            // 开始中心点交替闪烁
+                            startCenterBlink();
+                            
+                            // 设置状态
+                            status.textContent = `中心点交替闪烁 (${intervalTime}毫秒)`;
+                            displayStatus.textContent = `中心点交替闪烁 (${intervalTime}毫秒)`;
+                            
+                            // 设置定时器停止中心点闪烁并进入下一个点
+                            setTimeout(() => {
+                                stopCenterBlink();
+                                currentIndex++;
+                                
+                                // 检查是否完成一次循环
+                                if (currentIndex >= currentPath.length) {
+                                    currentIndex = 0;
+                                    currentLoop++;
+                                    updateLoopCounter();
+                                }
+                                
+                                // 更新路径预览
+                                updatePathPreview();
+                                
+                                // 短暂延迟后进入下一个点
+                                setTimeout(() => {
+                                    if (isRunning) animate();
+                                }, 100);
+                            }, intervalTime);
+                        }, durationTime);
+                    }
+                }
+            }
+            
+            // 停止动画
+            function stopAnimation() {
+                isRunning = false;
+                clearTimeout(animationTimeout);
+                clearInterval(centerBlinkInterval);
+                resetAllDots();
+                status.textContent = "已停止";
+                startBtn.disabled = false;
+                randomModeCheckbox.disabled = false;
+                centerAlert.style.display = 'none';
+                updatePathPreview();
+            }
+            
+            // 返回设置界面
+            function backToSetup() {
+                stopAnimation();
+                displayContainer.style.display = 'none';
+                document.querySelector('.setup-container').style.display = 'block';
+            }
+            
+            // 事件监听
+            startBtn.addEventListener('click', startAnimation);
+            stopBtn.addEventListener('click', stopAnimation);
+            backBtn.addEventListener('click', backToSetup);
+            confirmBtn.addEventListener('click', backToSetup);
+            
+            // 初始化
+            resetAllDots();
+            updatePathPreview();
+            updateLoopCounter();
+            
+            // 添加网格点点击事件
+            for (let i = 1; i <= 9; i++) {
+                if (i !== 5) {
+                    document.querySelector(`.grid-item[data-index="${i}"]`).addEventListener('click', () => {
+                        pathInput.value += pathInput.value ? `,${i}` : i;
+                        updatePathPreview();
+                    });
+                }
+            }
         });
     </script>
 </body>
